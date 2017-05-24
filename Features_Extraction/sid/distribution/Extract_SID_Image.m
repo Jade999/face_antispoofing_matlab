@@ -1,0 +1,11 @@
+function feature=Extract_SID_Image(im)
+settings.sc_min = 3;        %% min ring radius
+settings.sc_max = 231;      %% max ring radius
+settings.nsteps = 28;       %% number of rings
+settings.nrays  = 32;       %% number of rays
+settings.sc_sig = 0.1400;   %% (Gaussian sigma / ring radius) ratio
+settings.nors   = 4;        %% number of derivative orientations
+settings.cmp    = 1;        %% compress the invariant descriptor
+fc = 20;
+[polar_1,desc_1,grd] = get_descriptors(im,settings,fc);
+feature=reshape(desc_1,1,prod(size(desc_1)));
